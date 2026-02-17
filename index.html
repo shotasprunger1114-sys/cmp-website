@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Create More Productions — Social media content systems and local SEO for high-ticket service businesses. Based in Dearborn, MI.">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Create More Productions | Content Systems for Service Businesses">
+<meta property="og:description" content="We build content systems that get service businesses found, followed, and chosen. Social media + SEO. No fluff.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.createmore.us">
+<title>Create More Productions | Content Systems for Service Businesses</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --black: #0A0A0A;
+  --black-light: #111111;
+  --black-card: #161616;
+  --black-border: #222222;
+  --red: #E02020;
+  --red-dark: #B81818;
+  --red-glow: rgba(224, 32, 32, 0.15);
+  --white: #FFFFFF;
+  --gray-100: #F5F5F5;
+  --gray-300: #AAAAAA;
+  --gray-500: #666666;
+  --gray-700: #333333;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--black);
+  color: var(--gray-100);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ===== UTILITY ===== */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+.red { color: var(--red); }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--red); color: white;
+  padding: 16px 32px; border-radius: 8px;
+  font-size: 16px; font-weight: 700;
+  text-decoration: none; border: none; cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: -0.2px;
+  white-space: nowrap;
+}
+.btn:hover { background: var(--red-dark); transform: translateY(-1px); box-shadow: 0 8px 30px var(--red-glow); }
+.btn-outline {
+  background: transparent;
+  border: 2px solid rgba(255,255,255,0.3);
+  color: var(--white);
+}
+.btn-outline:hover { background: rgba(255,255,255,0.08); transform: translateY(-1px); box-shadow: none; border-color: rgba(255,255,255,0.5); }
+.btn-sm { padding: 11px 22px; font-size: 14px; }
+
+.section-label {
+  font-size: 12px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 3px; color: var(--red); margin-bottom: 12px;
+}
+.section-title {
+  font-size: clamp(28px, 4vw, 44px); font-weight: 800;
+  line-height: 1.12; letter-spacing: -1.5px; margin-bottom: 16px;
+}
+.section-sub { font-size: 17px; color: var(--gray-300); max-width: 600px; line-height: 1.75; }
+
+section { padding: 96px 0; }
+
+/* ===== SCROLL ANIMATIONS ===== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+.delay-4 { transition-delay: 0.4s; }
+.delay-5 { transition-delay: 0.5s; }
+
+/* ===== NAV ===== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 20px 0;
+  transition: background 0.3s ease, padding 0.3s ease, border-bottom 0.3s ease;
+}
+nav.scrolled {
+  background: rgba(10,10,10,0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 14px 0;
+  border-bottom: 1px solid var(--black-border);
+}
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none; flex-shrink: 0;
+}
+.nav-logo-mark {
+  width: 38px; height: 38px;
+  background: var(--red);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px; font-weight: 900; color: white;
+  letter-spacing: -1px;
+}
+.nav-logo-text {
+  font-size: 15px; font-weight: 700; color: var(--white);
+  line-height: 1.2;
+}
+.nav-logo-text span { display: block; font-size: 11px; font-weight: 400; color: var(--gray-300); }
+.nav-links {
+  display: flex; align-items: center; gap: 32px;
+  list-style: none;
+}
+.nav-links a {
+  text-decoration: none; color: var(--gray-300);
+  font-size: 14px; font-weight: 500;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--white); }
+.nav-cta { flex-shrink: 0; }
+
+/* Mobile nav */
+.nav-hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  background: none; border: none; cursor: pointer; padding: 4px;
+}
+.nav-hamburger span {
+  display: block; width: 22px; height: 2px;
+  background: var(--white); border-radius: 2px;
+  transition: all 0.3s ease;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.nav-mobile {
+  display: none;
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--black); z-index: 99;
+  flex-direction: column; align-items: center; justify-content: center;
+  gap: 40px;
+}
+.nav-mobile.open { display: flex; }
+.nav-mobile a {
+  font-size: 28px; font-weight: 700; color: var(--white);
+  text-decoration: none; letter-spacing: -0.5px;
+  transition: color 0.2s;
+}
+.nav-mobile a:hover { color: var(--red); }
+.nav-mobile .btn { font-size: 18px; }
+
+@media (max-width: 768px) {
+  .nav-links, .nav-cta { display: none; }
+  .nav-hamburger { display: flex; }
+}
+
+/* ===== HERO ===== */
+#hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding-top: 80px;
+  position: relative;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 60% 50% at 70% 50%, rgba(224,32,32,0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 20% 80%, rgba(224,32,32,0.04) 0%, transparent 60%);
+}
+.hero-grid {
+  position: absolute; inset: 0; pointer-events: none; opacity: 0.03;
+  background-image:
+    linear-gradient(var(--white) 1px, transparent 1px),
+    linear-gradient(90deg, var(--white) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.hero-inner { position: relative; z-index: 1; max-width: 820px; }
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(224,32,32,0.12); border: 1px solid rgba(224,32,32,0.25);
+  color: var(--red); padding: 6px 14px; border-radius: 100px;
+  font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;
+  margin-bottom: 28px;
+}
+.hero-tag::before {
+  content: '';
+  display: block; width: 6px; height: 6px;
+  background: var(--red); border-radius: 50%;
+}
+.hero-headline {
+  font-size: clamp(40px, 7vw, 80px);
+  font-weight: 900; line-height: 1.0; letter-spacing: -3px;
+  margin-bottom: 24px; color: var(--white);
+}
+.hero-headline .accent { color: var(--red); }
+.hero-sub {
+  font-size: clamp(17px, 2vw, 20px);
+  color: var(--gray-300); max-width: 580px;
+  line-height: 1.7; margin-bottom: 40px;
+}
+.hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 64px; }
+.hero-stats {
+  display: flex; gap: 40px; flex-wrap: wrap;
+  border-top: 1px solid var(--black-border);
+  padding-top: 40px;
+}
+.hero-stat-num {
+  font-size: 32px; font-weight: 900; color: var(--white); letter-spacing: -1px;
+}
+.hero-stat-label {
+  font-size: 13px; color: var(--gray-300); margin-top: 2px;
+}
+
+/* ===== SERVICES ===== */
+#services { background: var(--black); }
+.services-header { text-align: center; margin-bottom: 56px; }
+.services-header .section-sub { margin: 0 auto; }
+.services-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+}
+@media (max-width: 768px) {
+  .services-grid { grid-template-columns: 1fr; }
+}
+.service-card {
+  background: var(--black-card);
+  border: 1px solid var(--black-border);
+  border-radius: 16px;
+  padding: 40px;
+  position: relative; overflow: hidden;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+.service-card:hover { border-color: var(--red); transform: translateY(-4px); }
+.service-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--red);
+}
+.service-card.featured::after {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(224,32,32,0.06) 0%, transparent 60%);
+}
+.service-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(224,32,32,0.12); border: 1px solid rgba(224,32,32,0.2);
+  color: var(--red); padding: 5px 12px; border-radius: 100px;
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+.service-name {
+  font-size: 24px; font-weight: 800; color: var(--white);
+  letter-spacing: -0.5px; margin-bottom: 8px;
+}
+.service-price {
+  font-size: 40px; font-weight: 900; color: var(--white);
+  letter-spacing: -2px; margin-bottom: 4px;
+}
+.service-price span { font-size: 20px; font-weight: 500; color: var(--gray-300); letter-spacing: 0; }
+.service-tagline { font-size: 14px; color: var(--gray-300); margin-bottom: 28px; line-height: 1.5; }
+.service-divider { border: none; border-top: 1px solid var(--black-border); margin-bottom: 24px; }
+.service-features { list-style: none; margin-bottom: 32px; display: flex; flex-direction: column; gap: 12px; }
+.service-features li {
+  display: flex; align-items: flex-start; gap: 12px;
+  font-size: 14px; color: var(--gray-100); line-height: 1.5;
+}
+.service-features li::before {
+  content: '';
+  flex-shrink: 0;
+  width: 18px; height: 18px; margin-top: 1px;
+  background: rgba(224,32,32,0.15);
+  border: 1px solid rgba(224,32,32,0.3);
+  border-radius: 50%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M2.5 6l2.5 2.5 4.5-5' stroke='%23E02020' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-size: 12px; background-repeat: no-repeat; background-position: center;
+}
+.service-note {
+  font-size: 12px; color: var(--gray-500); margin-bottom: 28px;
+  padding: 12px 16px; background: rgba(255,255,255,0.03);
+  border-radius: 8px; border: 1px solid var(--black-border);
+  line-height: 1.6;
+}
+
+/* ===== INDUSTRIES ===== */
+#industries { background: var(--black-light); }
+.industries-header { text-align: center; margin-bottom: 56px; }
+.industries-header .section-sub { margin: 0 auto; }
+.industries-grid {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px;
+}
+@media (max-width: 1024px) {
+  .industries-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 640px) {
+  .industries-grid { grid-template-columns: repeat(2, 1fr); }
+  .industries-grid .industry-card:last-child { grid-column: 1 / -1; }
+}
+.industry-card {
+  background: var(--black-card);
+  border: 1px solid var(--black-border);
+  border-radius: 12px; padding: 24px 20px;
+  text-align: center;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.industry-card:hover { border-color: var(--red); transform: translateY(-4px); }
+.industry-icon {
+  font-size: 32px; margin-bottom: 12px; line-height: 1;
+}
+.industry-name {
+  font-size: 14px; font-weight: 700; color: var(--white);
+  margin-bottom: 10px; line-height: 1.3;
+}
+.industry-value {
+  font-size: 18px; font-weight: 900; color: var(--red);
+  letter-spacing: -0.5px;
+}
+.industry-value-label {
+  font-size: 11px; color: var(--gray-500); margin-top: 2px; text-transform: uppercase; letter-spacing: 1px;
+}
+
+/* ===== TESTIMONIALS ===== */
+#testimonials { background: var(--black); }
+.testimonials-header { text-align: center; margin-bottom: 56px; }
+.testimonials-header .section-sub { margin: 0 auto; }
+.testimonials-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+}
+@media (max-width: 900px) {
+  .testimonials-grid { grid-template-columns: 1fr; }
+}
+.testimonial-card {
+  background: var(--black-card);
+  border: 1px solid var(--black-border);
+  border-radius: 16px; padding: 36px;
+  display: flex; flex-direction: column; gap: 20px;
+  position: relative;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.testimonial-card:hover { border-color: rgba(224,32,32,0.3); transform: translateY(-4px); }
+.testimonial-stars {
+  display: flex; gap: 4px;
+}
+.testimonial-stars span {
+  color: var(--red); font-size: 16px;
+}
+.testimonial-quote {
+  font-size: 15px; color: var(--gray-100);
+  line-height: 1.75; font-style: italic;
+  flex: 1;
+}
+.testimonial-author {
+  display: flex; align-items: center; gap: 12px;
+  padding-top: 16px; border-top: 1px solid var(--black-border);
+}
+.testimonial-avatar {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--red);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px; font-weight: 800; color: white; flex-shrink: 0;
+}
+.testimonial-name { font-size: 14px; font-weight: 700; color: var(--white); }
+.testimonial-biz { font-size: 12px; color: var(--gray-500); }
+
+/* ===== HOW IT WORKS ===== */
+#how { background: var(--black-light); }
+.how-header { text-align: center; margin-bottom: 64px; }
+.how-header .section-sub { margin: 0 auto; }
+.how-steps {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;
+  position: relative;
+}
+.how-steps::before {
+  content: '';
+  position: absolute; top: 28px; left: calc(16.66% + 12px); right: calc(16.66% + 12px); height: 1px;
+  background: linear-gradient(90deg, var(--red) 0%, rgba(224,32,32,0.2) 100%);
+}
+@media (max-width: 768px) {
+  .how-steps { grid-template-columns: 1fr; gap: 32px; }
+  .how-steps::before { display: none; }
+}
+.how-step { text-align: center; position: relative; }
+.how-step-num {
+  width: 56px; height: 56px;
+  background: var(--red); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; font-weight: 900; color: white;
+  margin: 0 auto 24px;
+  position: relative; z-index: 1;
+  box-shadow: 0 0 0 8px var(--black-light), 0 0 0 10px rgba(224,32,32,0.2);
+}
+.how-step-title {
+  font-size: 18px; font-weight: 800; color: var(--white);
+  margin-bottom: 10px; letter-spacing: -0.3px;
+}
+.how-step-desc { font-size: 14px; color: var(--gray-300); line-height: 1.7; max-width: 260px; margin: 0 auto; }
+
+/* ===== WHY CMP ===== */
+#why { background: var(--black); }
+.why-inner {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+}
+@media (max-width: 900px) {
+  .why-inner { grid-template-columns: 1fr; gap: 48px; }
+}
+.why-content .section-sub { max-width: 480px; margin-bottom: 40px; }
+.why-stats-row {
+  display: flex; gap: 32px; flex-wrap: wrap;
+}
+.why-stat {
+  display: flex; flex-direction: column;
+}
+.why-stat-num {
+  font-size: 36px; font-weight: 900; color: var(--red); letter-spacing: -1.5px;
+}
+.why-stat-label { font-size: 13px; color: var(--gray-300); }
+.why-differentiators {
+  display: flex; flex-direction: column; gap: 16px;
+}
+.why-diff-item {
+  background: var(--black-card);
+  border: 1px solid var(--black-border);
+  border-radius: 12px; padding: 20px 24px;
+  display: flex; align-items: flex-start; gap: 16px;
+  transition: border-color 0.3s;
+}
+.why-diff-item:hover { border-color: rgba(224,32,32,0.3); }
+.why-diff-icon {
+  width: 40px; height: 40px; flex-shrink: 0;
+  background: rgba(224,32,32,0.1); border: 1px solid rgba(224,32,32,0.2);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+}
+.why-diff-text-title {
+  font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 4px;
+}
+.why-diff-text-desc { font-size: 13px; color: var(--gray-300); line-height: 1.6; }
+
+/* ===== FINAL CTA ===== */
+#cta {
+  background: var(--black);
+  position: relative; overflow: hidden;
+}
+.cta-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(224,32,32,0.08) 0%, transparent 70%);
+}
+.cta-inner {
+  position: relative; z-index: 1;
+  text-align: center; max-width: 700px; margin: 0 auto;
+}
+.cta-inner .section-title { font-size: clamp(32px, 5vw, 54px); }
+.cta-inner .section-sub { margin: 0 auto 40px; }
+.cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.cta-note {
+  margin-top: 20px; font-size: 13px; color: var(--gray-500);
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--black-card);
+  border-top: 1px solid var(--black-border);
+  padding: 56px 0 40px;
+}
+.footer-inner {
+  display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 56px;
+}
+@media (max-width: 768px) {
+  .footer-inner { grid-template-columns: 1fr; gap: 40px; }
+}
+.footer-brand { display: flex; flex-direction: column; gap: 16px; }
+.footer-logo {
+  display: flex; align-items: center; gap: 10px; text-decoration: none;
+}
+.footer-logo-mark {
+  width: 36px; height: 36px; background: var(--red); border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 900; color: white; letter-spacing: -1px;
+}
+.footer-logo-text { font-size: 14px; font-weight: 700; color: var(--white); }
+.footer-desc { font-size: 13px; color: var(--gray-500); line-height: 1.7; max-width: 280px; }
+.footer-social a {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 13px; color: var(--gray-300); text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-social a:hover { color: var(--red); }
+.footer-col-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--gray-500); margin-bottom: 16px; }
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-links a { font-size: 14px; color: var(--gray-300); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--white); }
+.footer-contact { display: flex; flex-direction: column; gap: 10px; }
+.footer-contact-item { font-size: 13px; color: var(--gray-300); line-height: 1.5; }
+.footer-contact-item a { color: var(--gray-300); text-decoration: none; transition: color 0.2s; }
+.footer-contact-item a:hover { color: var(--red); }
+.footer-bottom {
+  margin-top: 48px; padding-top: 24px;
+  border-top: 1px solid var(--black-border);
+  display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+}
+.footer-copy { font-size: 13px; color: var(--gray-500); }
+.footer-tagline { font-size: 13px; color: var(--gray-700); }
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav id="main-nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <div class="nav-logo-mark">CM</div>
+        <div class="nav-logo-text">
+          Create More
+          <span>Productions</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#services">Social Media</a></li>
+        <li><a href="local.html">SEO</a></li>
+        <li><a href="#why">About</a></li>
+      </ul>
+      <a href="https://www.createmore.us/booking-calendar/demo-call" class="btn btn-sm nav-cta" target="_blank" rel="noopener">Book a Demo</a>
+      <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="nav-mobile" id="mobile-menu">
+  <a href="#services" class="mobile-link">Social Media</a>
+  <a href="local.html" class="mobile-link">SEO</a>
+  <a href="#why" class="mobile-link">About</a>
+  <a href="https://www.createmore.us/booking-calendar/demo-call" class="btn" target="_blank" rel="noopener">Book a Demo</a>
+</div>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-tag fade-in">Dearborn, MI — Serving nationwide</div>
+      <h1 class="hero-headline fade-in delay-1">
+        The content system<br>that gets you <span class="accent">found,</span><br><span class="accent">followed,</span> and chosen.
+      </h1>
+      <p class="hero-sub fade-in delay-2">
+        We build social media and SEO systems for high-ticket service businesses — not generic posts, not vague strategies. Real research, real content, real results.
+      </p>
+      <div class="hero-ctas fade-in delay-3">
+        <a href="https://www.createmore.us/booking-calendar/demo-call" class="btn" target="_blank" rel="noopener">Book a Demo</a>
+        <a href="local.html" class="btn btn-outline">See SEO Services</a>
+      </div>
+      <div class="hero-stats fade-in delay-4">
+        <div>
+          <div class="hero-stat-num">0</div>
+          <div class="hero-stat-label">Client churn. Ever.</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">100%</div>
+          <div class="hero-stat-label">Word-of-mouth growth</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">90-day</div>
+          <div class="hero-stat-label">SEO performance guarantee</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section id="services">
+  <div class="container">
+    <div class="services-header fade-in">
+      <div class="section-label">Our Services</div>
+      <h2 class="section-title">Two things. Done right.</h2>
+      <p class="section-sub">We don't do branding decks, paid ads, or email drips. We do social content and SEO — and we do them better than anyone.</p>
+    </div>
+    <div class="services-grid">
+
+      <!-- Social Media Card -->
+      <div class="service-card featured fade-in delay-1">
+        <div class="service-badge">Social Media</div>
+        <div class="service-name">Social Media Content System</div>
+        <div class="service-price">$4,000<span>/mo</span></div>
+        <p class="service-tagline">20 strategic reels per month — researched, scripted, edited, posted. Built to convert, not just to look good.</p>
+        <hr class="service-divider">
+        <ul class="service-features">
+          <li>20 research-driven reels per month</li>
+          <li>Full production: scripting, filming direction, editing</li>
+          <li>Strategic content calendar — not random posting</li>
+          <li>Account management and scheduling</li>
+          <li>Real research — not ChatGPT copy-paste</li>
+          <li>Monthly performance review</li>
+        </ul>
+        <p class="service-note">6-month commitment. Designed for high-ticket local service businesses ready to own their market.</p>
+        <a href="https://www.createmore.us/booking-calendar/demo-call" class="btn" target="_blank" rel="noopener">Book a Demo</a>
+      </div>
+
+      <!-- SEO Card -->
+      <div class="service-card fade-in delay-2">
+        <div class="service-badge">SEO</div>
+        <div class="service-name">Local SEO & Digital Presence</div>
+        <div class="service-price">$1,495<span>/mo</span></div>
+        <p class="service-tagline">Full-service local SEO — Maps, search, reputation, and a 24/7 AI receptionist that captures leads while you sleep.</p>
+        <hr class="service-divider">
+        <ul class="service-features">
+          <li>On-page + off-page SEO optimization</li>
+          <li>Google Maps &amp; Local Pack dominance</li>
+          <li>50+ directory listing sync</li>
+          <li>Reputation management &amp; review automation</li>
+          <li>AI chat receptionist (24/7 lead capture)</li>
+          <li>Monthly performance reports</li>
+        </ul>
+        <p class="service-note">No contracts. 90-day performance guarantee — if you don't see measurable results, we work for free until you do.</p>
+        <a href="https://bookmenow.info/book/createmore/30-minutes" class="btn" target="_blank" rel="noopener">Get Your Free Audit</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== INDUSTRIES ===== -->
+<section id="industries">
+  <div class="container">
+    <div class="industries-header fade-in">
+      <div class="section-label">Who We Work With</div>
+      <h2 class="section-title">Built for businesses where one client pays for itself.</h2>
+      <p class="section-sub">We work with service businesses where the per-customer value is high enough that content and SEO have real ROI — not vanity metrics.</p>
+    </div>
+    <div class="industries-grid">
+      <div class="industry-card fade-in delay-1">
+        <div class="industry-icon">💆</div>
+        <div class="industry-name">Med Spas</div>
+        <div class="industry-value">$8–15K</div>
+        <div class="industry-value-label">Lifetime Value</div>
+      </div>
+      <div class="industry-card fade-in delay-2">
+        <div class="industry-icon">🏠</div>
+        <div class="industry-name">Mortgage Brokers</div>
+        <div class="industry-value">$3–8K</div>
+        <div class="industry-value-label">Per Close</div>
+      </div>
+      <div class="industry-card fade-in delay-3">
+        <div class="industry-icon">🔑</div>
+        <div class="industry-name">Real Estate Teams</div>
+        <div class="industry-value">$8–15K</div>
+        <div class="industry-value-label">Per Sale</div>
+      </div>
+      <div class="industry-card fade-in delay-4">
+        <div class="industry-icon">⚖️</div>
+        <div class="industry-name">Attorneys</div>
+        <div class="industry-value">$5–50K</div>
+        <div class="industry-value-label">Per Case</div>
+      </div>
+      <div class="industry-card fade-in delay-5">
+        <div class="industry-icon">🔨</div>
+        <div class="industry-name">Roofing &amp; Renovation</div>
+        <div class="industry-value">$10–50K</div>
+        <div class="industry-value-label">Per Job</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section id="testimonials">
+  <div class="container">
+    <div class="testimonials-header fade-in">
+      <div class="section-label">Client Results</div>
+      <h2 class="section-title">Don't take our word for it.</h2>
+      <p class="section-sub">We've never lost a client. Here's what they say.</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card fade-in delay-1">
+        <div class="testimonial-stars">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+        <p class="testimonial-quote">"Since teaming up with the Create More team, we've seen a real difference. Our visibility has grown, and we've noticed a solid increase in both sales and customer engagement. They've been super easy to work with and really took the time to understand our brand. It's been a great partnership."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">A</div>
+          <div>
+            <div class="testimonial-name">Verified Client</div>
+            <div class="testimonial-biz">Local Service Business</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-in delay-2">
+        <div class="testimonial-stars">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+        <p class="testimonial-quote">"Our digital presence has really improved since working with the team. They gave our website a great refresh and helped us create social media content that feels true to our brand. We've definitely seen more foot traffic and engagement online. It's been a smooth experience from start to finish."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">B</div>
+          <div>
+            <div class="testimonial-name">Verified Client</div>
+            <div class="testimonial-biz">Local Service Business</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-in delay-3">
+        <div class="testimonial-stars">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+        <p class="testimonial-quote">"They took the time to really understand what we're about and came up with a marketing plan that works for us. Our social media is much more active now, and we've noticed an uptick in sign-ups for classes. It's been easy to work with them, and the results are clear."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">C</div>
+          <div>
+            <div class="testimonial-name">Verified Client</div>
+            <div class="testimonial-biz">Local Service Business</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HOW IT WORKS ===== -->
+<section id="how">
+  <div class="container">
+    <div class="how-header fade-in">
+      <div class="section-label">How It Works</div>
+      <h2 class="section-title">Simple process. Real results.</h2>
+      <p class="section-sub">We don't make you read a 40-page onboarding doc. Here's how we go from zero to running your content system.</p>
+    </div>
+    <div class="how-steps">
+      <div class="how-step fade-in delay-1">
+        <div class="how-step-num">1</div>
+        <div class="how-step-title">Strategy Call</div>
+        <p class="how-step-desc">We dig into your business, your market, and what your competitors are doing wrong. No templates — a real strategy built for you.</p>
+      </div>
+      <div class="how-step fade-in delay-2">
+        <div class="how-step-num">2</div>
+        <div class="how-step-title">We Build Everything</div>
+        <p class="how-step-desc">Scripts, content calendar, SEO foundation, listings, reputation — we set up the full system so you can focus on running your business.</p>
+      </div>
+      <div class="how-step fade-in delay-3">
+        <div class="how-step-num">3</div>
+        <div class="how-step-title">Watch It Work</div>
+        <p class="how-step-desc">Monthly reports, continuous optimization, and a team that treats your business like our own. You'll see movement — or we don't stop working.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHY CMP ===== -->
+<section id="why">
+  <div class="container">
+    <div class="why-inner">
+      <div class="why-content fade-in">
+        <div class="section-label">Why CMP</div>
+        <h2 class="section-title">Not another agency that disappears after onboarding.</h2>
+        <p class="section-sub">We built this from $0 and grew it entirely on word of mouth. That only happens when results are undeniable.</p>
+        <div class="why-stats-row">
+          <div class="why-stat">
+            <div class="why-stat-num">$0</div>
+            <div class="why-stat-label">Spent on our own ads</div>
+          </div>
+          <div class="why-stat">
+            <div class="why-stat-num">0</div>
+            <div class="why-stat-label">Clients ever churned</div>
+          </div>
+          <div class="why-stat">
+            <div class="why-stat-num">100%</div>
+            <div class="why-stat-label">Referral-based growth</div>
+          </div>
+        </div>
+      </div>
+      <div class="why-differentiators fade-in delay-2">
+        <div class="why-diff-item">
+          <div class="why-diff-icon">🔬</div>
+          <div>
+            <div class="why-diff-text-title">Real research, not AI copy-paste</div>
+            <div class="why-diff-text-desc">Every script and strategy is built on actual market research. We study your competitors, your customers, and what's working right now — then write for you.</div>
+          </div>
+        </div>
+        <div class="why-diff-item">
+          <div class="why-diff-icon">🎬</div>
+          <div>
+            <div class="why-diff-text-title">A system, not just posts</div>
+            <div class="why-diff-text-desc">Random content doesn't build brands. We build a repeatable content engine — so your social presence grows whether or not you're thinking about it.</div>
+          </div>
+        </div>
+        <div class="why-diff-item">
+          <div class="why-diff-icon">🏆</div>
+          <div>
+            <div class="why-diff-text-title">Zero client churn — ever</div>
+            <div class="why-diff-text-desc">We've never had a client leave. That's not a marketing claim — it's the only proof that matters. We stay until the work is done, and then we keep going.</div>
+          </div>
+        </div>
+        <div class="why-diff-item">
+          <div class="why-diff-icon">📍</div>
+          <div>
+            <div class="why-diff-text-title">Built from real production experience</div>
+            <div class="why-diff-text-desc">Founder Shota brings 2 years of production experience from Tokyo and built this company from nothing. We know what good content actually takes.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FINAL CTA ===== -->
+<section id="cta">
+  <div class="cta-bg"></div>
+  <div class="container">
+    <div class="cta-inner fade-in">
+      <div class="section-label">Get Started</div>
+      <h2 class="section-title">One new client pays for the whole year.</h2>
+      <p class="section-sub">If you're a service business with high-ticket customers, content and SEO aren't expenses — they're the most reliable investment you can make.</p>
+      <div class="cta-buttons">
+        <a href="https://www.createmore.us/booking-calendar/demo-call" class="btn" target="_blank" rel="noopener">Book a Demo</a>
+        <a href="https://bookmenow.info/book/createmore/30-minutes" class="btn btn-outline" target="_blank" rel="noopener">Get Your Free SEO Audit</a>
+      </div>
+      <p class="cta-note">No commitment. No sales pressure. Just an honest conversation about what's possible for your business.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="/" class="footer-logo">
+          <div class="footer-logo-mark">CM</div>
+          <div class="footer-logo-text">Create More Productions</div>
+        </a>
+        <p class="footer-desc">Social media content systems and local SEO for high-ticket service businesses. Based in Dearborn, MI.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/createmore.production" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            @createmore.production
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Services</div>
+        <ul class="footer-links">
+          <li><a href="#services">Social Media Content</a></li>
+          <li><a href="local.html">Local SEO</a></li>
+          <li><a href="#industries">Who We Work With</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <div class="footer-contact">
+          <div class="footer-contact-item">22370 Michigan Ave Suite 200<br>Dearborn, MI 48124</div>
+          <div class="footer-contact-item"><a href="mailto:contact@createmoreproduction.com">contact@createmoreproduction.com</a></div>
+          <div class="footer-contact-item"><a href="https://www.createmore.us/booking-calendar/demo-call" target="_blank" rel="noopener">Book a Demo →</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 Create More Productions. All rights reserved.</div>
+      <div class="footer-tagline">Built to perform.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ===== NAV SCROLL =====
+const nav = document.getElementById('main-nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+
+// ===== HAMBURGER / MOBILE MENU =====
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+hamburger.addEventListener('click', () => {
+  const open = mobileMenu.classList.toggle('open');
+  hamburger.classList.toggle('open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+document.querySelectorAll('.mobile-link').forEach(link => {
+  link.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    hamburger.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+});
+
+// ===== SCROLL ANIMATIONS =====
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
